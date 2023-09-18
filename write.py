@@ -25,12 +25,16 @@ def get_sheet_index(sheetName, sh):
 
 def get_last_written_row(sheet_data):
     for index, i in enumerate(sheet_data):
-        if is_date(i[0]) and i[1] == "":
+        if is_date(i[0]) and i[5] == "":
             return index
         
     return -1
 
 def get_last_written_date(sheet_data):
+    return sheet_data[get_last_written_row(sheet_data)][0]
+
+def get_last_written_date_sheet(working_sheet):
+    sheet_data = working_sheet.get_all_values()
     return sheet_data[get_last_written_row(sheet_data)][0]
 
 def write_data_to_sheet(data, working_sheet):
